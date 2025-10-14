@@ -1,0 +1,54 @@
+import "./Main.css";
+
+// JSX 주의 사항
+// 1. 중괄호 내부에는 자바스크립틑 표현식만 넣을 수 있다. if문, for문같은 문법은 안 됨!
+// 2. 숫자, 문자열, 배열 값만 렌더링 된다.
+// 3. 모든 태그는 닫혀 있어야 한다.
+// 4. 최상위 태그는 반드시 하나여야 한다.
+
+const Main = () => {
+  //   const number = 11; // 변수의 값을 사용하고자 한다면 {} 안에. 단순 출력이 아닌 연산까지 가능
+  //   const obj = { a: 9, b: 2 };
+  const user = {
+    name: "차은우",
+    isLogin: true,
+  };
+
+  if (user.isLogin) {
+    return (
+      <div
+        // style={{
+        //   backgroundColor: "red",
+        //   borderBottom: "5px solid blue",
+        // }}
+        className="logout"
+      >
+        로그아웃
+      </div>
+    );
+  } else {
+    return <div>로그인</div>;
+  }
+
+  return (
+    <>
+      {/* // <div></div>
+      <main>
+        <img />
+        <h1>main</h1>
+        <h2>{number % 2 === 0 ? "짝수" : "홀수"}</h2>
+        {10}
+        {number}
+        {[1, 2, 3, 4]}
+        {obj.a}
+
+        {true}
+        {undefined}
+        {null}
+      </main> */}
+      {user.isLogin ? <div>로그인</div> : <div>로그아웃</div>}
+    </>
+  );
+};
+
+export default Main;
