@@ -1,3 +1,13 @@
 .Header > h1 {
-  color: rgb(37, 147, 255);
+  color: #99b0d1e7;
+}
+
+.Header h3 {
+  background-color: #c6d8f1e7;
+  color: rgb(80, 78, 78);
+  text-align: center;
+}
+
+.Header h1 {
+  text-align: center;
 }

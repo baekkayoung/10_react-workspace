@@ -3,6 +3,7 @@ import "./TodoItem.css";
 const TodoItem = ({ id, isDone, content, date, onUpdate, onDelete }) => {
   //props라서 이렇게?
 
+  // 인자인 id를 매개변수로 전달
   const onChangeCheckbox = () => {
     onUpdate(id);
   };

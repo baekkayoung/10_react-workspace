@@ -13,8 +13,8 @@
 .Editor button {
   cursor: pointer;
   width: 80px;
-  background-color: rgb(37, 147, 255);
-  color: white;
+  background-color: #c6d8f1e7;
+  color: rgb(80, 78, 78);
   border: none;
   border-radius: 5px;
 }

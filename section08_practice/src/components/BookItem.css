@@ -10,6 +10,24 @@
   width: 20px;
 }
 
+/* 체크박스 숨기기 */
+.BookItem input.star-checkbox {
+  display: none;
+}
+
+/* 별 모양 라벨 */
+.BookItem .star-label {
+  cursor: pointer;
+  font-size: 15px;
+  color: gray; /* 기본 회색 */
+  transition: color 0.2s;
+}
+
+/* 체크된 상태에서 별 색 변경 */
+.BookItem input.star-checkbox:checked + .star-label {
+  color: gold; /* 클릭 시 노란색 */
+}
+
 .BookItem .content {
   flex: 1;
 }
