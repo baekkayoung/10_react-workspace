@@ -1,0 +1,7 @@
+.App {
+  width: 500px;
+  margin: 0 auto; /* 가운데 정렬 */
+  display: flex; /*한 줄*/
+  flex-direction: column; /* 아래로 */
+  gap: 10px; /* display가 flex일 경우에만 적용되는 속성*/
+}

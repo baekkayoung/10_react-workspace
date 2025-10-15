@@ -1,0 +1,29 @@
+.BookItem {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.BookItem input {
+  width: 20px;
+}
+
+.BookItem .content {
+  flex: 1;
+}
+
+.BookItem .date {
+  font-size: 14px;
+  color: gray;
+}
+
+.BookItem button {
+  cursor: pointer;
+  color: gray;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}
