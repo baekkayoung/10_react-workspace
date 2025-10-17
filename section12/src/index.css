@@ -3,6 +3,25 @@
   src: url("/NanumPenScript-Regular.ttf");
 }
 
+/*전반적인 레이아웃*/
+html,
+body {
+  margin: 0;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+}
+
+#root {
+  background-color: white;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  min-height: 100vh; /* 보고있는 화면의 최소 높이*/
+  height: 100%;
+  box-shadow: rgba(100, 100, 100, 0.2) 0px 0px 29px 0px;
+  padding: 0px 20px; /*화면 옆에 딱 붙은 거 띄워줌*/
+}
+
 body * {
   font-family: "NanumPenScript";
 }
