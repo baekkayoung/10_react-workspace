@@ -54,8 +54,9 @@ function reducer(state, action) {
   }
 }
 
-export const DiaryStateContext = createContext();
-export const DiaryDispatchContext = createContext();
+// createContext()는 React에서 전역변수 저장소를 하나 만드는 함수
+export const DiaryStateContext = createContext(); // 상태 전용
+export const DiaryDispatchContext = createContext(); // 함수 전용
 
 function App() {
   // const nav = useNavigate();
