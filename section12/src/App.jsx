@@ -38,6 +38,7 @@ const mockData = [
   },
 ];
 
+// 재생성방지
 function reducer(state, action) {
   switch (action.type) {
     case "CREATE":

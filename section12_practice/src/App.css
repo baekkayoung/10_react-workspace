@@ -1,0 +1,14 @@
+.App {
+  width: 500px;
+  margin: 0 auto; /* 가운데 정렬 */
+  display: flex; /*한 줄*/
+  flex-direction: column; /* 아래로 */
+  gap: 10px; /* display가 flex일 경우에만 적용되는 속성*/
+}
+
+.SelectWrapper {
+  display: flex;
+  justify-content: center; /* 가로 가운데 */
+  gap: 20px; /* select 박스 사이 간격 */
+  margin: 40px 0;
+}

@@ -1,0 +1,26 @@
+.SelectStaion {
+  display: flex;
+  justify-content: center; /* 가로 가운데 */
+  align-items: center; /* 세로 가운데 */
+}
+
+.SelectStaion select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.SelectStaion select:hover {
+  border-color: #888;
+  background-color: #fff;
+}
+
+.SelectStaion select:focus {
+  outline: none;
+  border-color: #717271;
+  box-shadow: 0 0 5px rgba(197, 148, 148, 0.5);
+}

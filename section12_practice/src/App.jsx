@@ -49,7 +49,7 @@ function App() {
     <AirStateContext.Provider value={{ sido, station, air }}>
       <AirDispatchContext.Provider value={{ setSido, setStation, setAir }}>
         <div className="App">
-          <div cla>
+          <div className="SelectWrapper">
             <SelectSido sidoList={sidoList} />
             <SelectStation
               sido={sido}
