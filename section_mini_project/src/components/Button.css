@@ -1,0 +1,10 @@
+.Button {
+  background-color: rgb(75, 84, 134);
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 13px;
+  color: white;
+  white-space: nowrap; /*버튼을 한줄로 배치*/
+}
