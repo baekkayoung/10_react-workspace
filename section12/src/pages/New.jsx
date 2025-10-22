@@ -2,15 +2,24 @@ import Header from "./../components/Header";
 import Button from "./../components/Button";
 import Editor from "../components/Editor";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DiaryDispatchContext } from "../App";
 // 3종 함수 포함되어있는 디스패치 컨텍스트
+import usePageTitle from "../hooks/usePageTitle";
 
 const New = () => {
   const { onCreate } = useContext(DiaryDispatchContext);
 
   // nav
   const nav = useNavigate();
+
+  /*
+  useEffect(() => {
+    const $title = document.getElementsByTagName("title")[0]; // s니까 배열
+    $title.innerText = "새 일기 쓰기";
+  }, []);
+  */
+  usePageTitle("새 일기 쓰기");
 
   // Editor에서 입력한 정보들을 매개변수 input으로 받아옴
   const onSubmit = (input) => {
