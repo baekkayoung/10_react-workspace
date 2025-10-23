@@ -44,7 +44,8 @@ const Register = () => {
   const onChange = (e) => {
     countRef.current++;
     // count++;
-    console.log(countRef.current); // 변경시 1씩 증가
+    console.log(countRef.current); // 변입경시 1씩 증가
+    console.log(e.target.name, e.target.value);
     // console.log(count); // count ++ 안됨. 계속 1임 리렌더링이 되니까 0으로 초기화, 다시 버튼 -> 1 다시 초기화
     setInput({
       ...input,
@@ -58,7 +59,6 @@ const Register = () => {
       //   console.log(inputRef.current);
       //   <input placeholder="이름" value="" name="name"></input>
       inputRef.current.focus();
-    } else {
     }
   };
 

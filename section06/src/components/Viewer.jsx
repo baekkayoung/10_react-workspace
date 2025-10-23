@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Viewer = ({ count }) => {
   // props로 보낸 게  객체로 옴
   return (
