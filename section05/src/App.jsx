@@ -27,7 +27,7 @@ function App() {
       {/* <Signal /> */}
       {/* <LoginControl /> */}
       {/* <Box color="blue" /> */}
-      {/* <Register /> */}
+      <Register />
       {/* <HookExam /> */}
       {/* <Main /> */}
 

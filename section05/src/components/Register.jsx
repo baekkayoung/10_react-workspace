@@ -37,9 +37,11 @@ const Register = () => {
     bio: "",
   }); // state ref는 초기화가 되지 않도록 함. 일반 변수는 초기화가됨
 
-  const countRef = useRef(0); // 리렌더링이 되지 않음! 그래서 0으로 변하지 않고 숫자가 올라감 console 확인
-  const inputRef = useRef();
   // let count = 0; // count ++ 하면 안되나?
+  // 리렌더링이 일어날 때 count가 다시 0으로 초기화되기 때문에 => useRef 사용
+  const countRef = useRef(0);
+  // 리렌더링이 되지 않음! 그래서 0으로 변하지 않고 숫자가 올라감 console 확인
+  const inputRef = useRef();
 
   const onChange = (e) => {
     countRef.current++;
