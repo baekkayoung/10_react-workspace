@@ -128,6 +128,8 @@ const Register = () => {
           ref={inputRef}
           name="name"
           value={input.name}
+          // input-> state
+          // useState 객체에 값이 들어가는건가?
           onChange={onChange}
           placeholder={"이름"}
         />
