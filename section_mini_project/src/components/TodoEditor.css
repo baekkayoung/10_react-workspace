@@ -1,0 +1,74 @@
+.TodoEditor > section {
+  margin-bottom: 40px;
+}
+
+.TodoEditor > section > h4 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #4a7c59;
+}
+
+.date_section input[type="date"] {
+  background-color: #f1f8f4;
+  border: 2px solid #c8e6c9;
+  border-radius: 8px;
+  font-size: 20px;
+  padding: 10px 20px;
+  color: #4a7c59;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.todo_section_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.todo_section_header h4 {
+  margin: 0;
+}
+
+.todo_input_wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.todo_number {
+  min-width: 30px;
+  font-size: 20px;
+  color: #66bb6a;
+  font-weight: bold;
+}
+
+.todo_input {
+  flex: 1;
+  background-color: #f1f8f4;
+  border: 2px solid #c8e6c9;
+  border-radius: 8px;
+  font-size: 18px;
+  padding: 12px 15px;
+  color: #4a7c59;
+}
+
+.todo_remove_btn {
+  background-color: #ef5350;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.button_section {
+  display: flex;
+  justify-content: center;
+}
+
+.button_section button {
+  min-width: 200px;
+}

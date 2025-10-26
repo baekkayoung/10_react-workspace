@@ -1,0 +1,22 @@
+.App {
+  width: 100%;
+}
+
+.app_header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.app_header h1 {
+  text-align: center;
+  color: #4a7c59;
+  font-size: 36px;
+  margin: 20px 0;
+}
+
+.loading {
+  text-align: center;
+  padding: 100px 20px;
+  font-size: 24px;
+  color: #66bb6a;
+}

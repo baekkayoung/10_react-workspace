@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   padding: 20px 0px;
-  border-bottom: 1px solid rgb(226, 226, 226);
+  border-bottom: 2px solid #86c584;
 }
 
 .Header > div {
@@ -12,12 +12,14 @@
 .Header .header_center {
   width: 50%;
   font-size: 25px;
-  justify-content: center; /*display가 flex여야 먹음*/
+  justify-content: center;
+  font-weight: bold;
+  color: #4a7c59;
 }
 
 .Header .header_left {
   width: 25%;
-  justify-content: flex-start; /*시작점에 붙음*/
+  justify-content: flex-start;
 }
 
 .Header .header_right {

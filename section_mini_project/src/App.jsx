@@ -1,87 +1,161 @@
 import "./App.css";
+import { useReducer, useRef, createContext, useEffect, useState } from "react";
 import Home from "./pages/Home";
-import Draw from "./pages/Draw";
-import BookMark from "./pages/Bookmark";
-import Detail from "./pages/Detail";
-import Button from "./components/Button";
+import New from "./pages/New";
+import Edit from "./pages/Edit";
 import Notfound from "./pages/Notfound";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { createContext, useState } from "react";
 
-const tarotMockData = [
-  {
-    id: 1,
-    createdDate: new Date("2025-10-21").getTime(),
-    cardName: "The Sun",
-    advice: "오늘은 자신감 넘치는 하루예요!",
-    item: "골드 팔찌",
-    number: 7,
-    bookmarked: false,
-  },
-  {
-    id: 2,
-    createdDate: new Date("2025-10-20").getTime(),
-    cardName: "The Moon",
-    advice: "직감에 귀 기울이는 것이 중요합니다.",
-    item: "달빛 목걸이",
-    number: 3,
-    bookmarked: true,
-  },
-  {
-    id: 3,
-    createdDate: new Date("2025-10-19").getTime(),
-    cardName: "The Star",
-    advice: "작은 희망이 큰 변화를 만듭니다.",
-    item: "은반지",
-    number: 5,
-    bookmarked: false,
-  },
-  {
-    id: 4,
-    createdDate: new Date("2025-10-18").getTime(),
-    cardName: "The Lovers",
-    advice: "소중한 사람과의 소통이 필요해요.",
-    item: "하트 열쇠고리",
-    number: 2,
-    bookmarked: true,
-  },
-  {
-    id: 5,
-    createdDate: new Date("2025-10-17").getTime(),
-    cardName: "The Hermit",
-    advice: "혼자만의 시간을 가지며 생각해보세요.",
-    item: "작은 촛대",
-    number: 9,
-    bookmarked: false,
-  },
-];
+function reducer(state, action) {
+  let nextState;
 
-export const TarotStateContext = createContext(); // 가변
-export const TarotDispatchContext = createContext(); // 불변
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      nextState = [action.data, ...state];
+      break;
+    }
+    case "UPDATE": {
+      nextState = state.map((item) =>
+        String(item.id) === String(action.data.id) ? action.data : item
+      );
+      break;
+    }
+    case "DELETE": {
+      nextState = state.filter((item) => String(item.id) !== String(action.id));
+      break;
+    }
+    default:
+      return state;
+  }
+  localStorage.setItem("todosprout", JSON.stringify(nextState));
+  return nextState;
+}
+
+export const TodoStateContext = createContext();
+export const TodoDispatchContext = createContext();
 
 function App() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const today = new Date();
-  const todayDate = `${today.getFullYear()}년 ${
-    today.getMonth() + 1
-  }월 ${today.getDate()}일`;
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, dispatch] = useReducer(reducer, []);
+  const [currentPage, setCurrentPage] = useState("home");
+  const [pageData, setPageData] = useState({});
+  const idRef = useRef(0);
 
-  const nav = useNavigate();
+  useEffect(() => {
+    const storedData = localStorage.getItem("todosprout");
+
+    if (!storedData) {
+      setIsLoading(false);
+      return;
+    }
+
+    const parsedData = JSON.parse(storedData);
+
+    if (!Array.isArray(parsedData)) {
+      setIsLoading(false);
+      return;
+    }
+
+    let maxId = 0;
+    parsedData.forEach((item) => {
+      if (Number(item.id) > Number(maxId)) {
+        maxId = Number(item.id);
+      }
+    });
+
+    idRef.current = maxId + 1;
+
+    dispatch({
+      type: "INIT",
+      data: parsedData,
+    });
+    setIsLoading(false);
+  }, []);
+
+  const onCreate = (date, todos) => {
+    const existingItem = data.find((item) => {
+      const itemDate = new Date(item.date);
+      const targetDate = new Date(date);
+      return (
+        itemDate.getFullYear() === targetDate.getFullYear() &&
+        itemDate.getMonth() === targetDate.getMonth() &&
+        itemDate.getDate() === targetDate.getDate()
+      );
+    });
+
+    if (existingItem) {
+      dispatch({
+        type: "UPDATE",
+        data: {
+          ...existingItem,
+          todos: [
+            ...existingItem.todos,
+            ...todos.map((t) => ({ ...t, id: Date.now() + Math.random() })),
+          ],
+        },
+      });
+    } else {
+      dispatch({
+        type: "CREATE",
+        data: {
+          id: idRef.current++,
+          date,
+          todos: todos.map((t) => ({ ...t, id: Date.now() + Math.random() })),
+        },
+      });
+    }
+  };
+
+  const onUpdate = (id, date, todos) => {
+    dispatch({
+      type: "UPDATE",
+      data: {
+        id,
+        date,
+        todos,
+      },
+    });
+  };
+
+  const onDelete = (id) => {
+    dispatch({
+      type: "DELETE",
+      id,
+    });
+  };
+
+  const handleNavigate = (page, data = {}) => {
+    setCurrentPage(page);
+    setPageData(data);
+  };
+
+  if (isLoading) {
+    return <div className="loading">데이터 로딩중입니다... 🌱</div>;
+  }
 
   return (
-    <>
-      <TarotStateContext.Provider value={todayDate}>
-        <TarotDispatchContext.Provider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/draw" element={<Draw />} />
-            <Route path="/detail/:id" element={<Detail />} />
-            <Route path="/bookMark" element={<BookMark />} />
-            <Route path="*" element={<Notfound />} />
-          </Routes>
-        </TarotDispatchContext.Provider>
-      </TarotStateContext.Provider>
-    </>
+    <div className="App">
+      <div className="app_header">
+        <h1>TodoSprout 🌱</h1>
+      </div>
+
+      <TodoStateContext.Provider value={data}>
+        <TodoDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+          {currentPage === "home" && <Home onNavigate={handleNavigate} />}
+          {currentPage === "new" && (
+            <New
+              onNavigate={handleNavigate}
+              initialDate={pageData.date ? new Date(pageData.date) : new Date()}
+            />
+          )}
+          {currentPage === "edit" && (
+            <Edit onNavigate={handleNavigate} todoId={pageData.id} />
+          )}
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
+    </div>
   );
 }
 

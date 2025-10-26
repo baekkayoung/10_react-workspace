@@ -1,10 +1,21 @@
 .Button {
-  background-color: rgb(75, 84, 134);
+  background-color: #e8f5e9;
+  color: #4a7c59;
   cursor: pointer;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   padding: 10px 20px;
-  font-size: 13px;
+  font-size: 18px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.Button_POSITIVE {
+  background-color: #66bb6a;
   color: white;
-  white-space: nowrap; /*버튼을 한줄로 배치*/
+}
+
+.Button_NEGATIVE {
+  background-color: #ef5350;
+  color: white;
 }

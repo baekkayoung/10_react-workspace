@@ -1,36 +1,90 @@
-import TarotOrb from "./../components/TarotOrb";
-import Header from "./../components/Header";
+import { useState, useContext } from "react";
+import Header from "../components/Header";
 import Button from "../components/Button";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import Calendar from "../components/Calendar";
+import TodoList from "../components/TodoList";
+import { TodoStateContext, TodoDispatchContext } from "../App";
+import usePageTitle from "../hooks/usePageTitle";
 
-const Home = () => {
-  const nav = useNavigate();
-  const [isPlaying, setIsPlaying] = useState(false);
+const Home = ({ onNavigate }) => {
+  const data = useContext(TodoStateContext);
+  const { onUpdate } = useContext(TodoDispatchContext);
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
-  const today = new Date();
-  const todayDate = `${today.getFullYear()}년 ${
-    today.getMonth() + 1
-  }월 ${today.getDate()}일`;
+  usePageTitle("TodoSprout 🌱");
+
+  const getSelectedDateTodos = () => {
+    const dateTime = new Date(
+      selectedDate.getFullYear(),
+      selectedDate.getMonth(),
+      selectedDate.getDate()
+    ).getTime();
+
+    return data.find((item) => {
+      const itemDate = new Date(item.date);
+      return (
+        new Date(
+          itemDate.getFullYear(),
+          itemDate.getMonth(),
+          itemDate.getDate()
+        ).getTime() === dateTime
+      );
+    });
+  };
+
+  const toggleTodo = (todoId) => {
+    const selectedDateData = getSelectedDateTodos();
+    if (!selectedDateData) return;
+
+    const updatedTodos = selectedDateData.todos.map((todo) =>
+      todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+    );
+
+    onUpdate(selectedDateData.id, selectedDateData.date, updatedTodos);
+  };
+
+  const onPrevMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
+    );
+  };
+
+  const onNextMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+    );
+  };
+
+  const onSelectDate = (date) => {
+    if (date) {
+      setSelectedDate(date);
+    }
+  };
+
+  const selectedDateData = getSelectedDateTodos();
 
   return (
-    <div className="Home">
+    <div>
       <Header
-        title={todayDate}
-        leftChild={
-          <Button
-            onClick={() => {
-              nav("/bookMark");
-            }}
-            text={"⭐"}
-          />
-        }
-        rightChild={
-          <Button
-            onClick={() => setIsPlaying(!isPlaying)}
-            text={isPlaying ? "■" : "▶"}
-          />
-        }
+        title={`${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월`}
+        leftChild={<Button onClick={onPrevMonth} text={"<"} />}
+        rightchild={<Button onClick={onNextMonth} text={">"} />}
+      />
+
+      <Calendar
+        currentDate={currentDate}
+        selectedDate={selectedDate}
+        onSelectDate={onSelectDate}
+        data={data}
+      />
+
+      <TodoList
+        selectedDate={selectedDate}
+        selectedDateData={selectedDateData}
+        onNavigate={onNavigate}
+        toggleTodo={toggleTodo}
+        data={data}
       />
     </div>
   );
