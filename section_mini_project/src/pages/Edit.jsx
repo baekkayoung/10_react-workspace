@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import TodoEditor from "../components/TodoEditor";
 import { TodoDispatchContext, TodoStateContext } from "../App";
-import usePageTitle from "../hooks/usePageTitle.js";
+import usePageTitle from "../hooks/usePageTitle";
 
 const Edit = ({ onNavigate, todoId }) => {
   const data = useContext(TodoStateContext);
