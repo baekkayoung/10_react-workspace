@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import Calendar from "../components/Calendar";
 import TodoList from "../components/TodoList";
 import { TodoStateContext, TodoDispatchContext } from "../App";
-import usePageTitle from "../hooks/usePageTitle";
+import usePageTitle from "../hooks/usePageTitle.js";
 
 const Home = ({ onNavigate }) => {
   const data = useContext(TodoStateContext);
