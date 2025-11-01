@@ -48,7 +48,7 @@ const Register = () => {
     // count++;
     console.log(countRef.current); // 변입경시 1씩 증가
     console.log(e.target.name, e.target.value);
-    // console.log(count); // count ++ 안됨. 계속 1임 리렌더링이 되니까 0으로 초기화, 다시 버튼 -> 1 다시 초기화
+    // console.log(count); // count ++ 안됨. 계속 1임 리렌더링이 되니까 0으로 초기화, 다시 버튼 -> 1 다시 초기화함
     setInput({
       ...input,
       [e.target.name]: e.target.value,
